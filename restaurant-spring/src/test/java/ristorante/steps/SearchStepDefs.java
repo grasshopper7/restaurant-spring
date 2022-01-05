@@ -18,7 +18,7 @@ public class SearchStepDefs {
 	private ScenarioData data;
 	
 
-	@Then("Order should be available in {status} status in search")
+	@Then("Order should be available in {orderStatus} status in search")
 	public void orderShouldBeAvailableInSearch(OrderStatus state) {
 
 		OrderStatus[] statuses = { state };
@@ -29,7 +29,7 @@ public class SearchStepDefs {
 		assertThat(present).isEqualTo(true);
 	}
 	
-	@Then("User selects {status} order from search")
+	@Then("User selects {orderStatus} order from search")
 	public void userSelectsOrderFromSearch(OrderStatus state) {
 	    
 		searchPO.selectOrderInSearch(data.getTableNo().substring(5), data.getOrderNo(), state);	

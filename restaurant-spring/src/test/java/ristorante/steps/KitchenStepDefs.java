@@ -20,7 +20,7 @@ public class KitchenStepDefs {
 	private ScenarioData data;
 	
 	
-	@When("User promotes order to {status} status in kitchen")
+	@When("User promotes order to {orderStatus} status in kitchen")
 	public void userPromotesOrderToNewStatus(OrderStatus status) {
 	    
 		data.setOrderNo(kitchenPO.getOrderNum(data.getTableNo()));
@@ -32,7 +32,7 @@ public class KitchenStepDefs {
 	}
 	
 	@SuppressWarnings("deprecation")
-	@Then("Order should be available in {status} status in kitchen")
+	@Then("Order should be available in {orderStatus} status in kitchen")
 	public void orderShouldBeAvailableInStatusInKitchenPage(OrderStatus status) {
 
 		Order expectedOrder = data.getInitialOrder();

@@ -8,15 +8,17 @@
 	<artifactId>restaurant-spring</artifactId>
 	<version>1.0.0</version>
 	<name>restaurant-spring</name>
-	<description>Testing order lifecycle in a kitchen using Spring DI</description>
+	<description>Testing order lifecycle in a kitchen using Spring DI
+	</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8
+		</project.reporting.outputEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<cucumber.version>4.8.1</cucumber.version>
+		<cucumber.version>6.11.0</cucumber.version>
 	</properties>
 
 	<dependencies>
@@ -30,6 +32,18 @@
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>3.14.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.10.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.10.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -100,7 +114,7 @@
 			<plugin>
 				<groupId>tech.grasshopper</groupId>
 				<artifactId>cucumber-pdf-plugin</artifactId>
-				<version>1.2.0</version>
+				<version>1.4.4</version>
 				<executions>
 					<execution>
 						<id>report</id>
@@ -111,7 +125,8 @@
 					</execution>
 				</executions>
 				<configuration>
-					<cucumberJsonReportDirectory>${project.build.directory}/cucumber-report</cucumberJsonReportDirectory>
+					<cucumberJsonReportDirectory>${project.build.directory}/cucumber-report
+					</cucumberJsonReportDirectory>
 					<cucumberPdfReportDirectory>pdf-report</cucumberPdfReportDirectory>
 					<strictCucumber6Behavior>true</strictCucumber6Behavior>
 				</configuration>

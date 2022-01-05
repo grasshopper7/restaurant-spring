@@ -19,9 +19,8 @@ public class ServerStepDefs {
 
 	@Autowired
 	private ScenarioData data;
-	
 
-	@When("User promotes order to {status} status in server")
+	@When("User promotes order to {orderStatus} status in server")
 	public void userPromotesOrderToNewStatus(OrderStatus status) {
 
 		data.setOrderNo(serverPO.getOrderNum(data.getTableNo()));
@@ -36,13 +35,13 @@ public class ServerStepDefs {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Then("Order should be available in {status} status in server")
+	@Then("Order should be available in {orderStatus} status in server")
 	public void orderShouldBeAvailableInStatusInServerPage(OrderStatus status) {
 
 		Order expectedOrder = data.getInitialOrder();
 		Order actualOrder = serverPO.getOrderDetails(data.getOrderNo(), status.toString().toLowerCase());
-		//System.out.println("server expectedOrder - "+expectedOrder);
-		//System.out.println("server actualOrder - "+actualOrder);
+		// System.out.println("server expectedOrder - "+expectedOrder);
+		// System.out.println("server actualOrder - "+actualOrder);
 		assertThat(actualOrder).isEqualToIgnoringGivenFields(expectedOrder, "id", "orderLines").extracting("orderLines")
 				.asList().usingElementComparatorIgnoringFields("id")
 				.containsOnlyElementsOf(expectedOrder.getOrderLines());

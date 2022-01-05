@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 
-import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.spring.CucumberContextConfiguration;
 import ristorante.Config;
 import ristorante.entity.Order;
 import ristorante.entity.Tables;
@@ -17,19 +18,19 @@ import ristorante.pages.PageFrameSwitcher;
 import ristorante.pages.ScenarioData;
 
 //@DirtiesContext
+@CucumberContextConfiguration
 @ContextConfiguration(classes = { Config.class })
 public class DataSetup {
 
 	@Autowired
 	private ScenarioData data;
-	
+
 	@Autowired
 	private PageFrameSwitcher frameSwitcher;
-	
+
 	@Autowired
 	@Qualifier("mainDriver")
 	public WebDriver driver;
-
 
 	@Before
 	public void setup(Scenario scenario) {
@@ -49,14 +50,14 @@ public class DataSetup {
 
 	@After
 	public void teardown() {
-		
+
 		closeOtherTabs(frameSwitcher.getKitchenWindowHandle());
 		closeOtherTabs(frameSwitcher.getServerWindowHandle());
 		driver.switchTo().window(frameSwitcher.getHomeWindowHandle());
 	}
 
 	private boolean closeOtherTabs(String handle) {
-		if(handle == null || handle.isEmpty())
+		if (handle == null || handle.isEmpty())
 			return true;
 		try {
 			driver.switchTo().window(handle).close();
